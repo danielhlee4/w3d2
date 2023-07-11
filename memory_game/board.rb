@@ -51,20 +51,34 @@ class Board
     #every time we pop, one element from cards will disappear
     def populate
         cards = self.generate_cards
-
+        
+        
         while cards.length != 0
             
             rand_row = rand(0...@grid.length)
             rand_col = rand(0...@grid.length)
             if @grid[rand_row][rand_col] == nil 
-                @grid[rand_row][rand_col] = cards.pop.face_value
+                @grid[rand_row][rand_col] = cards.pop
             end
             # debugger
+            # create a hash to keep track of class instance
+            # class[instance key] - face_value[value]
         end
         p 'board was populated'
     end
 
-    
+    def render
+        @grid.each do |row|
+            puts row.map do |spot|
+                spot.face_value.join(" ")
+            end
+        end
+    end
+
+    def won?
+        #we want to test if cards are face_up
+        #we only have face_value 
+    end
 end
 
 b = Board.new
