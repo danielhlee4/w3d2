@@ -68,18 +68,39 @@ class Board
     end
 
     def render
-        @grid.each do |row|
-            puts row.map do |spot|
-                spot.face_value.join(" ")
+        print_grid = Array.new(@grid.length) { Array.new() }
+        # debugger
+
+        @grid.each_with_index do |row, i_1|
+            row.each_with_index do |spot, i_2|
+                # debugger
+                print_grid[i_1] << spot.face_value
+                # debugger
             end
+        end
+        # @grid.each do |row|
+        #     puts row.join(" ")
+        #     row.each do |spot|
+        #         p spot.face_value.to_s + " "
+        #         # debugger
+        #     end
+        #     puts
+        # end
+        print_grid.each do |row|
+            puts row.join(" ")
         end
     end
 
     def won?
         #we want to test if cards are face_up
         #we only have face_value 
+        #iterate through @grid to check if all face_up-s are true
+        @grid.flatten.all? do |card|
+            card.face_up == true
+        end
     end
 end
 
-b = Board.new
-b.generate_cards
+# b = Board.new
+# b.populate
+# b.render
