@@ -30,7 +30,7 @@ class Board
             face_value_pairs.push(alpha[i], alpha[i + 1])
             i += 2
             face_value_counter += 1
-            debugger
+            # debugger
         end
 
         face_value_pairs
@@ -52,15 +52,19 @@ class Board
     def populate
         cards = self.generate_cards
 
-        while cards.length > 0
+        while cards.length != 0
             
             rand_row = rand(0...@grid.length)
             rand_col = rand(0...@grid.length)
-            if @grid[rand_row][rand_col] != nil
+            if @grid[rand_row][rand_col] == nil 
                 @grid[rand_row][rand_col] = cards.pop.face_value
             end
+            # debugger
         end
+        p 'board was populated'
     end
+
+    
 end
 
 b = Board.new
